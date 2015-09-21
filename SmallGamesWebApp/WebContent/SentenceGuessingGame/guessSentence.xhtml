@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+    <h:head>
+    	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
+    	
+    </h:head>
+	<body>
+		<h:form id="gameForm">
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="col-sm-12">
+						<h3><b><h:outputText value="You are playing: #{sentenceGameBean.gameName}"></h:outputText></b></h3>
+						
+					</div>
+					<div class="col-sm-3">
+						<h:messages id="gameMsg" style="color:red" />
+						<h:panelGrid columns="2" cellpadding="10" styleClass="table">
+							<h:panelGroup id="guessTries">
+								<h:outputText value="You have #{sentenceGameBean.wrongGuesses} guesses" />
+							</h:panelGroup>
+							<h:outputText value="" />
+							<h:outputText value="Current Sentence:" />
+							
+							<h:panelGroup id="display">
+								<h:outputText value="#{sentenceGameBean.display}" style="letter-spacing: 0.2em;word-spacing:0.5em;" />
+							</h:panelGroup>
+							
+							
+							<h:outputText value="Take a guess at a letter!" /> <h:outputText value=""></h:outputText>
+							<h:panelGroup id="letterGuess">
+								<h:inputText value="#{sentenceGameBean.guess}"></h:inputText>
+							</h:panelGroup>
+							
+							<h:commandButton value="Submit" 
+								action="#{sentenceGameBean.guessLetter()}" styleClass="btn btn-primary">
+								<f:ajax execute="gameForm" render="gameForm:gameMsg gameForm:display gameForm:guessTries gameForm:letterGuess"></f:ajax>
+							</h:commandButton>
+							
+							<h:outputText value="Have an answer in mind?"/><h:outputText value=""></h:outputText>
+							<h:panelGroup id="sentenceGuess">
+								<h:inputText value="#{sentenceGameBean.answer}" />
+							</h:panelGroup>
+							<h:commandButton value="Take a shot!" 
+								action="#{sentenceGameBean.guessSentence()}" styleClass="btn btn-primary">
+								<f:ajax execute="gameForm" render="gameForm:gameMsg gameForm:display gameForm:guessTries"></f:ajax>
+							</h:commandButton>
+							
+							<h:outputText value="" />
+							<h:commandButton action="#{sentenceGameBean.startGame()}"
+								value="restart" styleClass="btn btn-default" execute="@this" render="gameForm"></h:commandButton>
+							
+						</h:panelGrid>
+					</div>
+				</div>
+			
+			</div>
+		</h:form>
+		
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+		<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	</body>
+</html>

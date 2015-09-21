@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+    <h:head>
+    	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
+    	
+    </h:head>
+	<body>
+		<h:form id="gameChoiceForm">
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="col-sm-12">
+						<h3><b><h:outputText value="#{playerBean.headline}"></h:outputText></b></h3>
+					</div>
+					<div class="col-sm-3">
+						<h:panelGrid columns="2" cellpadding="10" styleClass="table">
+							<h:outputText value="Please Input Your Name" />
+							<h:inputText value="#{playerBean.player1}"/>
+							
+							<h:outputText value="Which Mini Game do you want to play?" />
+							<h:selectOneMenu value="#{playerBean.gameName}">
+					   			<f:selectItems value="#{playerBean.games}"/>
+					   		</h:selectOneMenu>
+							
+							<h:commandButton value="Let's Do it!" 
+								action="#{playerBean.startGame()}" styleClass="btn btn-primary"></h:commandButton>
+							<h:outputText value="" />
+						</h:panelGrid>
+					</div>
+				</div>
+			
+			</div>
+		</h:form>
+		
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+		<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	</body>
+</html>
